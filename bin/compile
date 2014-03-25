@@ -49,6 +49,8 @@ curl --silent --max-time 60 --location "$APACHE_URL" | tar xz
 PHP_URL="http://jp1.php.net/distributions/php-5.5.10.tar.gz"
 echo "-----> Bundling PHP version $PHP_VERSION"
 curl --silent --max-time 60 --location "$PHP_URL" | tar xz
+./configure --prefix=/app/php --with-apxs2=/app/apache/bin/apxs --with-mysql --with-pdo-mysql --with-pgsql --with-pdo-pgsql --with-iconv --with-gd --with-curl=/usr/lib --with-config-file-path=/app/php --enable-soap=shared --with-openssl --with-mcrypt --enable-zip
+make && make install
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
